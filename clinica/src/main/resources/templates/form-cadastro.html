@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="fragments/layout :: layout">
+<div th:fragment="conteudo">
+
+	<h1>Cadastro</h1>
+
+	<form action="salavarusuario" method="post" th:object="${usuario}">
+		<input type="text" name="usuario" placeholder="usuário" required th:field="*{usuario}" />
+		<input type="text" name="nome" placeholder="nome" required th:field="*{nome}" />
+		<input type="password" name="senha" placeholder="senha" required th:field="*{senha}" />
+		<input type="submit" value="Salvar" class="button">
+	</form>
+</div>
+</html>
