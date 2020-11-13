@@ -43,5 +43,22 @@ public class Controlador {
 		return "mensagem";
 
 	}
+	
+	@RequestMapping("/atualizar-conta")
+	public String atualizar(@RequestParam(value = "id", required = false) Integer id, Model modelo) {
+		ContaDAO dao = new ContaDAO();
+		Conta conta = dao.buscarPorId(id);
+		modelo.addAttribute("conta",conta);
+		return "atualiza-conta";
+
+	}
+	
+	@RequestMapping("/atualizar-conta-2")
+	public String atualizar2(Conta conta) {
+		ContaDAO dao = new ContaDAO();
+		dao.atualizar(conta);
+		return "mensagem";
+
+	}
 
 }

@@ -54,6 +54,27 @@ public class ContaDAO {
 		return lista;
 	}
 	
+	public Conta buscarPorId(int id) {
+		Conta conta=null;
+		Connection conexao = FabricaDeConexao.getConnection();
+		String sql = "select * from conta where id =?";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet resultado = stmt.executeQuery();
+			resultado.next();
+			conta = new Conta(resultado.getInt("id"), resultado.getString("titular"),
+						resultado.getInt("numero"), resultado.getInt("agencia"),
+						resultado.getDouble("limite"), resultado.getDouble("saldo"));
+			resultado.close();
+			stmt.close();
+			conexao.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return conta;
+	}
+	
 	public void excluir(int id) {
 		Connection conexao = FabricaDeConexao.getConnection();
 		PreparedStatement stmt;
@@ -67,7 +88,27 @@ public class ContaDAO {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
+	}
+	
+	public void atualizar(Conta c) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt;
+		String sql = "update conta set titular=?,numero=?,agencia=?,limite=?,saldo=?"
+				+ " where id = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, c.getTitular());
+			stmt.setInt(2, c.getConta());
+			stmt.setInt(3, c.getAgencia());
+			stmt.setDouble(4, c.getLimite());
+			stmt.setDouble(5, c.getSaldo());
+			stmt.setInt(6, c.getId());
+			stmt.execute();
+			stmt.close();
+			conexao.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

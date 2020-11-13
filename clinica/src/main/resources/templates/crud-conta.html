@@ -31,15 +31,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="conta : ${lista}">
+						<tr th:each="conta, indice : ${lista}">
 
 							<td th:text="${conta.titular}">Thomas Hardy</td>
 							<td th:text="${conta.conta}">thomashardy@mail.com</td>
 							<td th:text="${conta.agencia}">89 Chiaroscuro Rd, Portland, USA</td>
 							<td th:text="${conta.limite}">(171) 555-2222</td>
 							<td th:text="${conta.saldo}">(171) 555-2222</td>
-							<td><a th:href="@{/excluir-conta(id=${conta.id})}" class="delete">
+							<td>
+								<a th:href="@{/excluir-conta(id=${conta.id})}" class="delete">
 									<i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+								</a>
+								<a th:href="@{/atualizar-conta(id=${conta.id})}" class="edit">
+									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
 							</td>
 						</tr>
@@ -51,7 +55,7 @@
 
 
 
-	<!-- Edit Modal HTML -->
+	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">

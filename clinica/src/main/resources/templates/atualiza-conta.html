@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout">
+<div th:fragment="conteudo">
+	<div class="container-xl">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>
+								<b>Atualização de conta</b>
+							</h2>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<form action="/atualizar-conta-2" method="post" th:object="${conta}">
+		<input type="hidden" name="id" th:field="*{id}" th:value="${id}">
+		<div class="modal-header">
+			<h4 class="modal-title">Nova conta</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		</div>
+		<div class="modal-body">
+			<div class="form-group">
+				<label>Titular</label>
+				<input type="text" class="form-control" required name="titular" th:field="*{titular}" th:value="${titular}">
+			</div>
+			<div class="form-group">
+				<label>Conta</label>
+				<input type="text" class="form-control" required name="conta" th:field="*{conta}">
+			</div>
+			<div class="form-group">
+				<label>Agência</label>
+				<input type="text" class="form-control" required name="agencia" th:field="*{agencia}">
+			</div>
+			<div class="form-group">
+				<label>Limite</label>
+				<input type="text" class="form-control" required name="limite" th:field="*{limite}">
+			</div>
+			<div class="form-group">
+				<label>Saldo</label>
+				<input type="text" class="form-control" required name="saldo" th:field="*{saldo}">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+			<input type="submit" class="btn btn-success" value="Gravar">
+		</div>
+	</form>
+</div>
+</body>
+</html>
